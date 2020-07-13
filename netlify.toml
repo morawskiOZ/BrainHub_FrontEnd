@@ -1,0 +1,9 @@
+[build]
+  command = "npm run build"
+  publish = "public/"
+  functions = "functions-build/" # functions folder wiht production code
+[dev]
+  command = "npm run start" # Command to start your dev server
+  port = 8001 # Port that the dev server will be listening on
+  publish = "static/"
+  functions = "functions/" # functions folder with dev code

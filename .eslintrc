@@ -1,0 +1,102 @@
+{
+	"settings": {
+		"import/resolver": {
+			"alias": {
+				"map": [
+					[
+						"src",
+						"./src"
+					]
+				],
+				"extensions": [
+					".ts",
+					".js",
+					".jsx",
+					".json",
+					".tsx"
+				]
+			}
+		}
+	},
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": "./tsconfig.json",
+		"ecmaVersion": 2020,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+	},
+	"env": {
+		"es6": true,
+		"node": true,
+		"jest": true
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"prettier"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"airbnb-typescript",
+		"prettier/react",
+		"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"react/jsx-filename-extension": [
+			1,
+			{
+				"extensions": [
+					".tsx",
+					".jsx"
+				]
+			}
+		],
+		"prettier/prettier": "error",
+		"strict": 0,
+		"import/no-extraneous-dependencies": [
+			"error",
+			{
+				"devDependencies": [
+					"**/*.test.ts",
+					"**/*.test.tsx",
+					"jest-preprocess.js"
+				]
+			}
+		],
+		"import/extensions": [
+			"error",
+			"never",
+			{
+				"svg": "always",
+				"json": "always",
+				"png": "always",
+				"jpg": "always"
+			}
+		],
+		"import/prefer-default-export": 0,
+		"no-underscore-dangle": 0,
+		"@typescript-eslint/semi": 0,
+		"react/prop-types": 0,
+		"@typescript-eslint/no-var-requires": 0,
+		"@typescript-eslint/no-non-null-assertion": 0,
+		"jsx-a11y/label-has-associated-control": [
+			2,
+			{
+				"assert": "both",
+				"depth": 3
+			}
+		],
+		"no-plusplus": [
+			2,
+			{ "allowForLoopAfterthoughts": true
+			}
+		],
+		"no-console": 1,
+		"@typescript-eslint/no-unused-vars": 1
+	}
+}

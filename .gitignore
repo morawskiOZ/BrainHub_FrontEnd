@@ -1,0 +1,8 @@
+node_modules
+
+# Local Netlify folder
+.netlify
+
+public/
+functions-build/
+.cache

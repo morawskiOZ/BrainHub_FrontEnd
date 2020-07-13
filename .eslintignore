@@ -1,0 +1,17 @@
+.text
+
+functions-build
+functions
+
+node_modules
+
+public
+static
+
+.cache
+
+.circleci
+
+.__mocks__
+
+.netlify
