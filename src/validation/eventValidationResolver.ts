@@ -8,45 +8,54 @@ import { validateDate } from './validators/date'
 import { validateEmail } from './validators/email'
 import { fieldRequired, emailFormat, dateFormat } from './errorMessages'
 
+export const FE_ERROR_TYPE = 'frontend_validation'
+
 export const eventValidationResolver = (
   values: EventForm,
 ): Promise<ResolverResult<EventForm>> => {
   let errors: EventFormErrors
-  const type = 'frontend_validation'
 
   // Empty Field validation
   eventFormRequiredFields.forEach(name => {
     if (!values[name]) {
-      errors = { ...errors, [name]: { message: fieldRequired(name) } }
+      errors = {
+        ...errors,
+        [name]: { type: FE_ERROR_TYPE, message: fieldRequired(name) },
+      }
     }
   })
 
   // Second validation for email
-  const isEmailValidate: boolean = validateEmail(values.email)
-  if (!errors.email && !isEmailValidate) {
-    errors = {
-      ...errors,
-      email: {
-        type,
-        message: emailFormat,
-      },
+  if (!errors?.email) {
+    const isEmailValid: boolean = validateEmail(values.email)
+
+    if (!isEmailValid) {
+      errors = {
+        ...errors,
+        email: {
+          type: FE_ERROR_TYPE,
+          message: emailFormat,
+        },
+      }
     }
   }
 
   // Second validation for date
-  const isDateValidate: boolean = validateDate(values.date)
-  if (!errors.date && !isDateValidate) {
-    errors = {
-      ...errors,
-      date: {
-        type,
-        message: dateFormat,
-      },
+  if (!errors?.date) {
+    const isDateValid: boolean = validateDate(values.date)
+    if (!isDateValid) {
+      errors = {
+        ...errors,
+        date: {
+          type: FE_ERROR_TYPE,
+          message: dateFormat,
+        },
+      }
     }
   }
 
   if (errors) {
     return Promise.resolve({ errors, values: {} })
   }
-  return Promise.resolve({ values: {}, errors })
+  return Promise.resolve({ values, errors: {} })
 }

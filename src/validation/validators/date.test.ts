@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { validateDate } from './date'
 
-describe.only('validateDate function', () => {
+describe('validateDate function', () => {
   it('should return true for valid date', () => {
     expect(validateDate('2022-12-22')).toBe(true)
     expect(validateDate('2922-12-22')).toBe(true)
