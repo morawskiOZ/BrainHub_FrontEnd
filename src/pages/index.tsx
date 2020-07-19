@@ -1,12 +1,13 @@
 import * as React from 'react'
-import { App } from '../components/App'
+import { Link } from 'gatsby'
 
 const Home = (): React.ReactElement => {
   return (
-    <>
-      <App />
-      <h1>Hello Gatsby! Test CI</h1>
-    </>
+    <div data-testid="page-home">
+      <Link to="/schedule" data-testid="link-page-schedule">
+        Schedule an event!
+      </Link>
+    </div>
   )
 }
 export default Home
