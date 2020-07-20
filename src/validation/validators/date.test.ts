@@ -15,6 +15,7 @@ describe('validateDate function', () => {
     expect(validateDate('20222-01-12')).toBe(false)
     expect(validateDate('1922-12-32')).toBe(false)
     expect(validateDate('20222-01-1112')).toBe(false)
+    expect(validateDate('2022112-01-23')).toBe(false)
     expect(validateDate('20222-011-122')).toBe(false)
     expect(validateDate('1999-011-122')).toBe(false)
     expect(validateDate('1991/11/122')).toBe(false)

@@ -9,12 +9,12 @@ import { validateEmail } from './validators/email'
 import { fieldRequired, emailFormat, dateFormat } from './errorMessages'
 
 export const FE_ERROR_TYPE = 'frontend_validation'
+export const BE_ERROR_TYPE = 'backend_validation'
 
 export const eventValidationResolver = (
   values: EventForm,
 ): Promise<ResolverResult<EventForm>> => {
   let errors: EventFormErrors
-
   // Empty Field validation
   eventFormRequiredFields.forEach(name => {
     if (!values[name]) {
@@ -53,7 +53,6 @@ export const eventValidationResolver = (
       }
     }
   }
-
   if (errors) {
     return Promise.resolve({ errors, values: {} })
   }

@@ -9,7 +9,7 @@ export interface EventForm {
 
 export type InputType = 'text' | 'date' | 'email'
 
-type InputNames = keyof EventForm
+export type InputNames = keyof EventForm
 
 export const eventFormRequiredFields: InputNames[] = [
   'date',

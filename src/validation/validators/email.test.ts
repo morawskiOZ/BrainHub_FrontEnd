@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { validateEmail } from './email'
 
 describe('validateEmail function', () => {

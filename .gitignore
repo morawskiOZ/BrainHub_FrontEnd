@@ -6,3 +6,6 @@ node_modules
 public/
 functions-build/
 .cache
+
+.env
+.env.development
