@@ -13,7 +13,7 @@
 
 ## About The Project
 
-Serverless API for event creation
+App to create and save events.
 
 ### Built With
 
