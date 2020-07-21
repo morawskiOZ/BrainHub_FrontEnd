@@ -14,14 +14,6 @@ module.exports = {
   globals: {
     __PATH_PREFIX__: '',
   },
-  setupFiles: [
-    '<rootDir>/loadershim.js',
-    '<rootDir>/jest-dotenv.js',
-    '<rootDir>/jest-whatwg-fetch.js',
-    '<rootDir>/jest-setup.js',
-  ],
-  setupFilesAfterEnv: [
-    '<rootDir>/jest-dom.js',
-    '<rootDir>/jest-setup-after-env.js',
-  ],
+  setupFiles: ['<rootDir>/jest-setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest-setup-after-env.js'],
 }
