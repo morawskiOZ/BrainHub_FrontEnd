@@ -28,7 +28,6 @@ export const Input = memo(
     name,
     label,
     type = 'text',
-    value,
     testId,
     ...rest
   }: Props): ReactElement => {
