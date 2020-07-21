@@ -1,5 +1,5 @@
   <h1 align="center">BrainHub Event App</h1>
-  <h3 align="center"><a href="https://brainhub-task.netlify.app/">https://brainhub-task.netlify.app/schedule</a></h3>
+  <h3 align="center"><a href="https://brainhub-task.netlify.app/schedule">https://brainhub-task.netlify.app/schedule</a></h3>
 <!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
