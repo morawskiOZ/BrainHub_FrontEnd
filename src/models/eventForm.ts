@@ -11,13 +11,6 @@ export type InputType = 'text' | 'date' | 'email'
 
 export type InputNames = keyof EventForm
 
-export const eventFormRequiredFields: InputNames[] = [
-  'date',
-  'firstName',
-  'lastName',
-  'email',
-]
-
 interface EventInputs {
   name: InputNames
   type: InputType
@@ -25,6 +18,15 @@ interface EventInputs {
 }
 
 type EventInputsList = EventInputs[]
+
+export type EventFormErrors = Record<InputNames, FieldError>
+
+export const eventFormRequiredFields: InputNames[] = [
+  'date',
+  'firstName',
+  'lastName',
+  'email',
+]
 
 export const eventsInputs: EventInputsList = [
   {
@@ -47,5 +49,3 @@ export const eventsInputs: EventInputsList = [
     name: 'date',
   },
 ]
-
-export type EventFormErrors = Record<InputNames, FieldError>

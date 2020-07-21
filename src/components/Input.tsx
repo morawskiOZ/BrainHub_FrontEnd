@@ -32,6 +32,7 @@ export const Input = memo(
     ...rest
   }: Props): ReactElement => {
     const classes = useStyles()
+
     return (
       <Controller
         {...rest}

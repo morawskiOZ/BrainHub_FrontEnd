@@ -31,12 +31,13 @@ const useStyles = makeStyles({
 
 export const Form = ({ defaultValues }: Props): ReactElement => {
   const classes = useStyles()
+  const [eventSaved, setEventSaved] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const {
     control,
     handleSubmit,
     errors,
-
     formState: { isDirty, isSubmitted, isValid, isSubmitting },
     setError,
     reset,
@@ -44,8 +45,7 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
     defaultValues,
     resolver: async data => eventValidationResolver(data),
   })
-  const [eventSaved, setEventSaved] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+
   const closeAlertHandler = () => {
     setEventSaved(false)
     reset()
@@ -64,7 +64,6 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
   const onSubmit = async (data: EventForm): Promise<void> => {
     setIsLoading(true)
     const { success, errors: err } = await saveEvent(data)
-
     if (!success && err) {
       onSubmitError(err)
     }
