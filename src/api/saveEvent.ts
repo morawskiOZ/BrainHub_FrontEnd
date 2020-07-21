@@ -1,13 +1,13 @@
 import { EventForm, EventFormErrors } from 'src/models/eventForm'
 import { BE_ERROR_TYPE } from 'src/validation/eventValidationResolver'
 
+export const saveEventUrl = `${process.env.GATSBY_API_URL}/dev/events`
+
 export const saveEvent = async (
   data: EventForm,
-): Promise<{ success: boolean; errors: EventFormErrors }> => {
-  const url = `${process.env.GATSBY_API_URL}/dev/events`
-
+): Promise<{ success: boolean; errors: Partial<EventFormErrors> }> => {
   try {
-    const response = await fetch(url, {
+    const response = await fetch(saveEventUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -32,6 +32,12 @@ export const saveEvent = async (
         }, {})
         return { success: false, errors }
       }
+    }
+    return {
+      success: false,
+      errors: {
+        firstName: { message: 'Unknown Server error', type: BE_ERROR_TYPE },
+      },
     }
   } catch (e) {
     // eslint-disable-next-line no-console

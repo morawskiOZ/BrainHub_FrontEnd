@@ -23,7 +23,8 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
     control,
     handleSubmit,
     errors,
-    formState: { isDirty, isSubmitted, touched },
+
+    formState: { isDirty, isSubmitted, isValid, isSubmitting },
     setError,
     reset,
   } = useForm<EventForm>({
@@ -31,13 +32,13 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
     resolver: async data => eventValidationResolver(data),
   })
   const [eventSaved, setEventSaved] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false)
   const closeAlertHandler = () => {
     setEventSaved(false)
     reset()
   }
 
-  const onSubmitError = (submitErrors: EventFormErrors): void => {
+  const onSubmitError = (submitErrors: Partial<EventFormErrors>): void => {
     Object.entries(submitErrors).forEach(([name, message]) => {
       setError(name as InputNames, message)
     })
@@ -48,21 +49,25 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
   }
 
   const onSubmit = async (data: EventForm): Promise<void> => {
+    setIsLoading(true)
     const { success, errors: err } = await saveEvent(data)
+
     if (!success && err) {
       onSubmitError(err)
     }
     if (success && !err) {
       onSubmitSuccess()
     }
+    setIsLoading(false)
   }
 
-  const shouldShowError = (isDirty || isSubmitted || touched) && errors
-
+  const shouldShowError = isDirty || isSubmitted
   return (
     <>
       {eventSaved && (
-        <Alert onClose={closeAlertHandler}>Event was successfully saved!</Alert>
+        <Alert data-testid="form-alert-success" onClose={closeAlertHandler}>
+          Event was successfully saved!
+        </Alert>
       )}
       <form data-testid="form" onSubmit={handleSubmit(onSubmit)}>
         <Grid container direction="column" justify="flex-start" spacing={1}>
@@ -73,7 +78,7 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
                   control={control}
                   id={name}
                   name={name}
-                  data-testid={`input-${name}`}
+                  testId={`input-${name}`}
                   error={shouldShowError && !!errors[name]}
                   label={label || ''}
                   type={type}
@@ -83,14 +88,19 @@ export const Form = ({ defaultValues }: Props): ReactElement => {
             )
           })}
           <Grid container item xs={12} md={6} lg={3} justify="center">
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              data-testid="form-submit"
-            >
-              Submit
-            </Button>
+            {!isLoading ? (
+              <Button
+                variant="contained"
+                color="primary"
+                type="submit"
+                data-testid="form-submit"
+                disabled={isSubmitting || (isSubmitted && !isValid)}
+              >
+                Submit
+              </Button>
+            ) : (
+              <span data-testid="form-loading">...Loading</span>
+            )}
           </Grid>
         </Grid>
       </form>

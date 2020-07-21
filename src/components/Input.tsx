@@ -16,6 +16,7 @@ interface Props extends BaseTextFieldProps {
   control: Control<EventForm>
   name: keyof EventForm
   error: boolean
+  testId: string
   label?: string
   type?: InputType
 }
@@ -28,6 +29,7 @@ export const Input = memo(
     label,
     type = 'text',
     value,
+    testId,
     ...rest
   }: Props): ReactElement => {
     const classes = useStyles()
@@ -37,11 +39,11 @@ export const Input = memo(
         as={
           <TextField
             id={id}
-            data-test-id="input"
             label={label || ''}
             variant="outlined"
             type={type}
             classes={{ root: classes.root }}
+            inputProps={{ 'data-testid': testId }}
           />
         }
         control={control}
