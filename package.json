@@ -1,7 +1,7 @@
 {
-  "name": "gatsby_typescript_materialui_jest_gitlabci_netlify_boilerplate",
+  "name": "brainhub_task",
   "version": "1.0.0",
-  "description": "Boilerplate for rapid development with gatsby TS and running CD/CI on GitLab with Netlify Hosting",
+  "description": "Brainhub task - event scheduling app",
   "main": "index.js",
   "scripts": {
     "build": "gatsby build",
