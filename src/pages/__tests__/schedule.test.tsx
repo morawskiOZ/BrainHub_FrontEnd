@@ -9,7 +9,7 @@ describe('SchedulePage', () => {
     expect(queryByTestId('page-schedule')).toBeVisible()
   })
 
-  it('show link to event schedule form', async () => {
+  it('shows form', async () => {
     const { queryByTestId } = render(<SchedulePage />)
     await waitFor(() => screen.queryByTestId('form'))
     expect(queryByTestId('form')).toBeVisible()
