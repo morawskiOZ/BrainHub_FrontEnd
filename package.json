@@ -17,7 +17,7 @@
     "@material-ui/icons": "^4.9.1",
     "@material-ui/lab": "^4.0.0-alpha.56",
     "@material-ui/styles": "^4.10.0",
-    "gatsby": "^2.24.2",
+    "gatsby": "^4.25.7",
     "gatsby-plugin-material-ui": "^2.1.9",
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-typescript": "^2.4.14",
